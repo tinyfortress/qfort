@@ -1,0 +1,16 @@
+option(BUILD_CLIENT "Build client" ON)
+option(BUILD_SERVER "Build server" OFF)
+
+if(BUILD_CLIENT)
+    add_executable(qfort "${CMAKE_CURRENT_LIST_DIR}/main.cc")
+    target_compile_definitions(qfort PUBLIC QFORT_CLIENT)
+    target_include_directories(qfort PUBLIC "${CMAKE_SOURCE_DIR}")
+    target_link_libraries(qfort PUBLIC core client)
+endif()
+
+if(BUILD_SERVER)
+    add_executable(qfds "${CMAKE_CURRENT_LIST_DIR}/main.cc")
+    target_compile_definitions(qfds PUBLIC QFORT_SERVER)
+    target_include_directories(qfds PUBLIC "${CMAKE_SOURCE_DIR}")
+    target_link_libraries(qfds PUBLIC core server)
+endif()

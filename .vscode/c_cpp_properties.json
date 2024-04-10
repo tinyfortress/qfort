@@ -7,13 +7,14 @@
             "cStandard": "c99",
             "intelliSenseMode": "linux-gcc-x64",
             "compilerPath": "/usr/bin/g++",
-            "defines": ["QFORT_CLIENT"],
+            "defines": ["GLFW_INCLUDE_NONE", "QFORT_CLIENT"],
             "includePath": [
-                "${workspaceFolder}/external/entt/include",
-                "${workspaceFolder}/external/glm/include",
-                "${workspaceFolder}/external/physfs/include",
-                "${workspaceFolder}/external/spdlog/include",
-                "${workspaceFolder}/src",
+                "${workspaceFolder}/deps/entt/include",
+                "${workspaceFolder}/deps/glad/include",
+                "${workspaceFolder}/deps/glm/include",
+                "${workspaceFolder}/deps/physfs/include",
+                "${workspaceFolder}/deps/spdlog/include",
+                "${workspaceFolder}",
                 "${default}"
             ]
         }
