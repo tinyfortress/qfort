@@ -15,8 +15,8 @@
 #include <entt/signal/dispatcher.hpp>
 
 float globals::frametime = 0.0;
-unsigned long globals::curtime = 0UL;
-unsigned long globals::framecount = 0UL;
+uint64_t globals::curtime = 0U;
+uint64_t globals::framecount = 0U;
 
 entt::registry globals::registry = {};
 entt::dispatcher globals::dispatcher = {};

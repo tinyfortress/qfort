@@ -24,7 +24,7 @@ if(NOT glfw3_FOUND)
     set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
     FetchContent_Declare(glfw3
         GIT_REPOSITORY https://github.com/glfw/glfw.git
-        GIT_TAG 3.4-stable
+        GIT_TAG 3.4
         GIT_SHALLOW TRUE
         GIT_PROGRESS TRUE)
     FetchContent_MakeAvailable(glfw3)
