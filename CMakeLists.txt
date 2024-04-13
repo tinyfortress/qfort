@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.14)
-project(QFORT LANGUAGES CXX)
-set(QFORT_SEMVER 0.0.1-alpha)
+project(QFORT LANGUAGES CXX VERSION 0.0.1)
+
+set(BUILD_CLIENT ON CACHE BOOL "Build game client")
+set(BUILD_SERVER ON CACHE BOOL "Build dedicated server")
+set(DEFAULT_GAMEDIR "tfort" CACHE STRING "Content location")
 
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 
@@ -29,6 +32,8 @@ if(NOT glfw3_FOUND)
         GIT_PROGRESS TRUE)
     FetchContent_MakeAvailable(glfw3)
 endif()
+
+configure_file("${CMAKE_CURRENT_LIST_DIR}/config/cmake.hh.in" "${CMAKE_CURRENT_LIST_DIR}/config/cmake.hh")
 
 add_subdirectory(deps/entt)
 add_subdirectory(deps/glad)

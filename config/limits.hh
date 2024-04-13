@@ -10,11 +10,11 @@
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-#ifndef CORE_LIMITS_HH
-#define CORE_LIMITS_HH
+#ifndef CONFIG_LIMITS_HH
+#define CONFIG_LIMITS_HH
 #include <stddef.h>
 #include <stdint.h>
 
 constexpr static unsigned QFZIP_MAX = 1000;
 
-#endif /* CORE_LIMITS_HH */
+#endif /* CONFIG_LIMITS_HH */

@@ -12,8 +12,9 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 #include <client/main.hh>
+#include <config/cmake.hh>
+#include <config/limits.hh>
 #include <core/cmdline.hh>
-#include <core/limits.hh>
 #include <core/vfstools.hh>
 #include <filesystem>
 #include <server/main.hh>
@@ -21,6 +22,8 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
 #include <stdlib.h>
+
+namespace fs = std::filesystem;
 
 int main(int argc, char **argv)
 {
@@ -41,29 +44,42 @@ int main(int argc, char **argv)
     if(cmdline::contains("trace"))
         logger->set_level(spdlog::level::trace);
 
+#if defined(QFORT_CLIENT)
+    spdlog::info("QFort {} client {}", CMAKE_SYSTEM_NAME, QFORT_VERSION);
+#elif defined(QFORT_SERVER)
+    spdlog::info("QFort {} server {}", CMAKE_SYSTEM_NAME, QFORT_VERSION);
+#endif
+
     if(!PHYSFS_init(argv[0])) {
         spdlog::critical("physfs: init failed: {}", vfstools::last_error());
         std::terminate();
     }
 
     std::error_code error = {};
-    const std::filesystem::path game_name = "tfort";
-    const std::filesystem::path gamedir = std::filesystem::canonical(game_name, error);
+    std::string gamedir_option = {};
+    std::string gamedir_value = DEFAULT_GAMEDIR;
+
+    if(cmdline::get("gamedir", gamedir_option))
+        gamedir_value = gamedir_option;
+    if(cmdline::get("game", gamedir_option))
+        gamedir_value = gamedir_option;
+
+    fs::path gamedir = fs::canonical(gamedir_value, error);
 
     if(error) {
-        spdlog::critical("filesystem: canonical failed: {}: {}", game_name.string(), error.message());
+        spdlog::critical("fs: canonical failed: {}: {}", gamedir_value, error.message());
         std::terminate();
     }
 
-    spdlog::debug("filesystem: current_path: {}", std::filesystem::current_path().string());
-    spdlog::debug("filesystem: gamedir: {} [{}]", gamedir.string(), game_name.string());
+    spdlog::debug("fs: gamedir = [{}]", gamedir.string());
+    spdlog::debug("fs: current_path = [{}]", fs::current_path().string());
 
     if(!PHYSFS_setWriteDir(gamedir.string().c_str())) {
         spdlog::critical("physfs: setwritedir failed: {}: {}", gamedir.string(), vfstools::last_error());
         std::terminate();
     }
 
-    for(unsigned i = 0; i < QFZIP_MAX; ++i) {
+    for(unsigned i = 1; i <= QFZIP_MAX; ++i) {
         const auto file = fmt::format("QF_{:03}.zip", i);
         const auto path = gamedir / file;
 
