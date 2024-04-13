@@ -1,11 +1,11 @@
-option(BUILD_CLIENT "Build client" ON)
-option(BUILD_SERVER "Build server" OFF)
+option(BUILD_CLIENT "Build game client" ON)
+option(BUILD_SERVER "Build dedicated server" ON)
 
 if(BUILD_CLIENT)
     add_executable(qfort "${CMAKE_CURRENT_LIST_DIR}/main.cc")
     target_compile_definitions(qfort PUBLIC QFORT_CLIENT)
     target_include_directories(qfort PUBLIC "${CMAKE_SOURCE_DIR}")
-    target_link_libraries(qfort PUBLIC core client)
+    target_link_libraries(qfort PUBLIC core client server)
 endif()
 
 if(BUILD_SERVER)

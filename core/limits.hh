@@ -15,6 +15,6 @@
 #include <stddef.h>
 #include <stdint.h>
 
-constexpr static unsigned WFZIP_MAX = 1000;
+constexpr static unsigned QFZIP_MAX = 1000;
 
 #endif /* CORE_LIMITS_HH */

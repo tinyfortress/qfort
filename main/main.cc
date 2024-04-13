@@ -22,10 +22,6 @@
 #include <spdlog/spdlog.h>
 #include <stdlib.h>
 
-// UNDONE: make this a cmake option so game-specific
-// forks of the engine will use a different default gamedir
-constexpr static const char *DEFAULT_GAMEDIR = "tfort";
-
 int main(int argc, char **argv)
 {
     cmdline::append(argc, argv);
@@ -50,30 +46,25 @@ int main(int argc, char **argv)
         std::terminate();
     }
 
-    std::string gamedir_argument = {};
-    std::filesystem::path gamedir = DEFAULT_GAMEDIR;
+    std::error_code error = {};
+    const std::filesystem::path game_name = "tfort";
+    const std::filesystem::path gamedir = std::filesystem::canonical(game_name, error);
 
-    if(cmdline::get("game", gamedir_argument)) {
-        gamedir = gamedir_argument;
+    if(error) {
+        spdlog::critical("filesystem: canonical failed: {}: {}", game_name.string(), error.message());
+        std::terminate();
     }
 
-    if(gamedir.is_relative()) {
-        // Dealing with absolute paths is better
-        // in terms of reading console logs and seeing
-        // exactly what location was the game running
-        gamedir = std::filesystem::absolute(gamedir);
-    }
-
-    spdlog::debug("filesystem: cwd is {}", std::filesystem::current_path().string());
-    spdlog::debug("filesystem: gamedir is {}", gamedir.string());
+    spdlog::debug("filesystem: current_path: {}", std::filesystem::current_path().string());
+    spdlog::debug("filesystem: gamedir: {} [{}]", gamedir.string(), game_name.string());
 
     if(!PHYSFS_setWriteDir(gamedir.string().c_str())) {
         spdlog::critical("physfs: setwritedir failed: {}: {}", gamedir.string(), vfstools::last_error());
         std::terminate();
     }
 
-    for(unsigned i = 0; i < WFZIP_MAX; ++i) {
-        const auto file = fmt::format("WF_{:03}.zip", i);
+    for(unsigned i = 0; i < QFZIP_MAX; ++i) {
+        const auto file = fmt::format("QF_{:03}.zip", i);
         const auto path = gamedir / file;
 
         if(PHYSFS_mount(path.string().c_str(), nullptr, false))
