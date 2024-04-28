@@ -11,8 +11,8 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 #include <client/shadertools.hh>
-#include <core/strtools.hh>
-#include <core/vfstools.hh>
+#include <shared/strtools.hh>
+#include <shared/vfstools.hh>
 #include <spdlog/spdlog.h>
 #include <sstream>
 

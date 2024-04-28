@@ -15,16 +15,16 @@
 
 constexpr static const char *CMAKE_CXX_COMPILER_ID = "GNU";
 
-constexpr static const char *CMAKE_SYSTEM = "Linux-6.8.4-arch1-1";
+constexpr static const char *CMAKE_SYSTEM = "Linux-6.8.7-arch1-1";
 constexpr static const char *CMAKE_SYSTEM_NAME = "Linux";
 constexpr static const char *CMAKE_SYSTEM_PROCESSOR = "x86_64";
-constexpr static const char *CMAKE_SYSTEM_VERSION = "6.8.4-arch1-1";
+constexpr static const char *CMAKE_SYSTEM_VERSION = "6.8.7-arch1-1";
 
 constexpr static unsigned CMAKE_VERSION_MAJOR = 3;
 constexpr static unsigned CMAKE_VERSION_MINOR = 29;
-constexpr static unsigned CMAKE_VERSION_PATCH = 1;
+constexpr static unsigned CMAKE_VERSION_PATCH = 2;
 constexpr static unsigned CMAKE_VERSION_TWEAK = 0;
-constexpr static const char *CMAKE_VERSION = "3.29.1";
+constexpr static const char *CMAKE_VERSION = "3.29.2";
 
 constexpr static unsigned QFORT_VERSION_MAJOR = 0;
 constexpr static unsigned QFORT_VERSION_MINOR = 0;

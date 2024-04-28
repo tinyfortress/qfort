@@ -35,13 +35,13 @@ endif()
 
 configure_file("${CMAKE_CURRENT_LIST_DIR}/config/cmake.hh.in" "${CMAKE_CURRENT_LIST_DIR}/config/cmake.hh")
 
+add_subdirectory(deps/enet)
 add_subdirectory(deps/entt)
 add_subdirectory(deps/glad)
 add_subdirectory(deps/glm)
 add_subdirectory(deps/physfs)
 add_subdirectory(deps/spdlog)
 
-add_subdirectory(core)
 add_subdirectory(client)
 add_subdirectory(server)
 add_subdirectory(shared)

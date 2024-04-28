@@ -14,10 +14,10 @@
 #include <client/main.hh>
 #include <config/cmake.hh>
 #include <config/limits.hh>
-#include <core/cmdline.hh>
-#include <core/vfstools.hh>
 #include <filesystem>
 #include <server/main.hh>
+#include <shared/cmdline.hh>
+#include <shared/vfstools.hh>
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>

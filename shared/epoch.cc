@@ -11,7 +11,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 #include <chrono>
-#include <core/epoch.hh>
+#include <shared/epoch.hh>
 
 uint64_t epoch::microseconds(void)
 {

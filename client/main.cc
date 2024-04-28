@@ -18,11 +18,11 @@
 #include <client/game.hh>
 #include <client/globals.hh>
 #include <client/main.hh>
-#include <core/cmdline.hh>
-#include <core/epoch.hh>
 #include <entt/signal/dispatcher.hpp>
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
+#include <shared/cmdline.hh>
+#include <shared/epoch.hh>
 #include <spdlog/spdlog.h>
 
 #if defined(_WIN32)

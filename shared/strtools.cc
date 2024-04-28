@@ -11,8 +11,8 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 #include <algorithm>
-#include <core/strtools.hh>
 #include <ctype.h>
+#include <shared/strtools.hh>
 
 bool strtools::contains(const std::string &str, char character)
 {
